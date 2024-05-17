@@ -1,10 +1,15 @@
-﻿namespace ETL_Lib.Models
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace ETL_Lib.Models
 {
     /// <summary>
-    /// Intermediate data transfer object for the cab trip data
+    /// Database model for the cab trip data
     /// </summary>
-    public class CabTripDto
+    internal class CabTrip
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid TripID { get; set; }
         public DateTime PickupDateTime { get; set; }
         public DateTime DropoffDateTime { get; set; }

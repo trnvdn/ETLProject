@@ -1,36 +1,40 @@
-﻿using CsvHelper;
+﻿using AutoMapper;
+using CsvHelper;
 using ETL_Lib.Configations;
 using ETL_Lib.Coverters;
 using ETL_Lib.Models;
+using ETL_Lib.Repository;
 using System.Globalization;
 
 namespace ETL_Lib.Services.CSVService
 {
-    public class CSVService
+    public class CSVService : ICSVService
     {
         private readonly HttpClient _httpClient;
         private readonly Config? _appSettings;
+        private readonly IMapper _mapper;
+        private readonly ICabTripRepository _repository;
+
         private readonly string _fileName = "CabTripData.csv";
 
         public CSVService()
         {
             _httpClient = new HttpClient();
             _appSettings = ConfigurationManager.Configurations;
+            _mapper = ConfigurationManager.Mapper;
+            _repository = new CabTripRepository();
         }
 
-        public void DownloadCSV()
+        public async Task DownloadCSVAsync()
         {
-            if(File.Exists(Path.Combine(Directory.GetCurrentDirectory(), _fileName)))
-            {
-                File.Delete(Path.Combine(Directory.GetCurrentDirectory(), _fileName));
-            }
-            var response = _httpClient.GetAsync(_appSettings.CSVSourceLink).GetAwaiter().GetResult();
+            var response = await _httpClient.GetAsync(_appSettings.CSVSourceLink);
             response.EnsureSuccessStatusCode();
-            var content = response.Content.ReadAsStringAsync().GetAwaiter().GetResult();
+
+            var content = await response.Content.ReadAsStringAsync();
             File.WriteAllText(_fileName, content);
         }
 
-        public async Task<List<CabTripCSV>>? ParseCSVAsync()
+        public async Task<List<CabTripDto>>? ParseCSVAsync()
         {
             try
             {
@@ -75,7 +79,7 @@ namespace ETL_Lib.Services.CSVService
 
                 writeDuplicatesToFile(duplicates);
 
-                return records;
+                return _mapper.Map<List<CabTripDto>>(records);
             }
             catch (Exception ex)
             {
@@ -86,7 +90,12 @@ namespace ETL_Lib.Services.CSVService
                 return null;
             }
         }
+        public async Task<bool> InsertResultsAsync(List<CabTripDto>? cabTrips)
+        {
+            return await _repository.Insert(cabTrips);
+        }
 
+        #region Cab trip handlers
         private void trimStringProperties(CabTripCSV record)
         {
             var properties = record.GetType().GetProperties()
@@ -119,5 +128,6 @@ namespace ETL_Lib.Services.CSVService
                 csvWriter.WriteRecords(duplicates);
             }
         }
+        #endregion
     }
 }
