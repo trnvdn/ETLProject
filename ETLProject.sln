@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETL_Lib", "ETL_Lib\ETL_Lib.csproj", "{F3087DFA-8D3B-4D7F-BA38-68D140531E7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETL_Executable", "ETL_Executable\ETL_Executable.csproj", "{9C3A35A1-335F-43F8-B1DC-FF1CC3E93AB5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F3087DFA-8D3B-4D7F-BA38-68D140531E7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3087DFA-8D3B-4D7F-BA38-68D140531E7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3087DFA-8D3B-4D7F-BA38-68D140531E7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3087DFA-8D3B-4D7F-BA38-68D140531E7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C3A35A1-335F-43F8-B1DC-FF1CC3E93AB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C3A35A1-335F-43F8-B1DC-FF1CC3E93AB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C3A35A1-335F-43F8-B1DC-FF1CC3E93AB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C3A35A1-335F-43F8-B1DC-FF1CC3E93AB5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56E6DEB2-FD7B-4544-8371-D5EC0C7ABB77}
+	EndGlobalSection
+EndGlobal
