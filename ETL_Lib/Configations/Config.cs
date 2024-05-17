@@ -2,6 +2,7 @@
 {
     public class Config
     {
-        public AppSettings? AppSettings { get; set; }
+        public string? DbConnectionString { get; set; }
+        public string? CSVSourceLink { get; set; }
     }
 }

@@ -9,18 +9,21 @@ namespace ETL_Lib.Configations
         private static readonly Lazy<Config?> _lazyConfig = new Lazy<Config?>(loadConfiguration);
         private static readonly Lazy<IMapper> _lazyMapper = new Lazy<IMapper>(createMapperInstance);
 
-        public static Config? Instance => _lazyConfig.Value;
+        private static readonly string _configFilePath = "config.json";
+
+        public static Config? Configurations => _lazyConfig.Value;
         public static IMapper Mapper => _lazyMapper.Value;
 
         private static Config? loadConfiguration()
         {
-            string configFilePath = "config.json";
-            if (!File.Exists(configFilePath))
+            string fullPath = Path.Combine(Directory.GetCurrentDirectory(), _configFilePath);
+            if (!File.Exists(fullPath))
             {
-                throw new FileNotFoundException($"Configuration file '{configFilePath}' not found.");
+                throw new FileNotFoundException($"Configuration file '{_configFilePath}' not found.");
             }
 
-            string json = File.ReadAllText(configFilePath);
+            string json = File.ReadAllText(fullPath);
+
             return JsonConvert.DeserializeObject<Config>(json);
         }
 

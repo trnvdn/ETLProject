@@ -7,7 +7,7 @@ namespace ETL_Lib.Database
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(ConfigurationManager.Instance.AppSettings.DbConnectionString);
+            optionsBuilder.UseSqlServer(ConfigurationManager.Configurations.DbConnectionString);
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace ETL_Lib.Models
 {
-    internal class CabTripCSV
+    public class CabTripCSV
     {
         [Name("VendorID")]
         public int VendorID { get; set; }

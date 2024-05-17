@@ -7,4 +7,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ETL_Lib\ETL_Lib.csproj" />
+  </ItemGroup>
+
 </Project>
