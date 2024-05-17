@@ -2,6 +2,6 @@
 {
     public class Config
     {
-        public AppSettings AppSettings { get; set; }
+        public AppSettings? AppSettings { get; set; }
     }
 }
